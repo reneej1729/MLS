@@ -8,10 +8,10 @@ predictr <- function(home, away){
   guess<- as.data.frame(cbind(home, away, homeAvg$x[home], awayAvg$x[away]))
   names(guess)<- c("homeTeam", "awayTeam", "homeScore", "awayScore")
   wlt <- predict(modFit, guess) #from mls.R
-  if(wlt > 1/3){
+  if(wlt > .2){
     return(paste("We predict", levels(homeAvg$homeTeam)[home], "will win!"))
   }
-  if(-1/4 > wlt){
+  if(-.1 > wlt){
     return(paste("We predict", levels(awayAvg$awayTeam)[away], "will win!"))
   }
   "We predict a tie."
